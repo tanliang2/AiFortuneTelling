@@ -58,6 +58,16 @@
 			path = AiFortuneTellingUITests;
 			sourceTree = "<group>";
 		};
+		C0A11A000000000000000001 /* openspec */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = openspec;
+			sourceTree = "<group>";
+		};
+		C0A11A000000000000000002 /* .codex */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = .codex;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +101,8 @@
 				54AB9CCC2FAC38F3005A9745 /* AiFortuneTelling */,
 				54AB9CDE2FAC38F4005A9745 /* AiFortuneTellingTests */,
 				54AB9CE82FAC38F4005A9745 /* AiFortuneTellingUITests */,
+				C0A11A000000000000000001 /* openspec */,
+				C0A11A000000000000000002 /* .codex */,
 				54AB9CCB2FAC38F3005A9745 /* Products */,
 			);
 			sourceTree = "<group>";
