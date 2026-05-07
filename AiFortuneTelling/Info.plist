@@ -2,6 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>用于拍摄掌纹和面部照片，并在确认后提交服务端进行娱乐参考分析。</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>用于在你主动保存结果图片时写入相册。</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>用于选择掌纹和面部照片，并在确认后提交服务端进行娱乐参考分析。</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

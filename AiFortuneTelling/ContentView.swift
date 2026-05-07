@@ -6,56 +6,38 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @StateObject private var appState = FortuneAppState()
+    @State private var path: [AppRoute] = []
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+        NavigationStack(path: $path) {
+            HomeView(path: $path)
+                .navigationDestination(for: AppRoute.self) { route in
+                    switch route {
+                    case .birthday:
+                        BirthdayFortuneView(path: $path)
+                    case .palmFace:
+                        PalmFaceReadingView(path: $path)
+                    case .auspiciousDate:
+                        AuspiciousDateView(path: $path)
+                    case .result(let taskID):
+                        AnalysisResultView(taskID: taskID, path: $path)
+                    case .history:
+                        HistoryView(path: $path)
+                    case .historyDetail(let recordID):
+                        HistoryDetailView(recordID: recordID, path: $path)
+                    case .settings:
+                        SettingsView(path: $path)
                     }
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
+        .environmentObject(appState)
+        .tint(.purple)
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }
